@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="login4">
+        <br><br>
+        <h1>Hi, {{ current_user.username }}!</h1>
+    	<!-- <form name='form1'action="{{ url_for('predict')}}" method="post">
+        	<input type="text" name="review" placeholder="Enter review" required="required"/>
+            
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            <br>
+            <br>
+            
+            {{review_text}}
+            <br>
+            {{prediction_text}}
+            <br>
+            <font size="32">
+            	{{prediction_score}}
+            </font>
+
+        </form> -->
+        <br><br> 
+        {% if form %}
+        <form action="{{ url_for('predict')}}" method="post" placeholder="Enter Review">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
+            {% for error in form.post.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+        </form>
+        {% endif %}
+
+        {% for post in posts %}
+            {% include '_post2.html' %}
+        {% endfor %}
+        <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Newer posts
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older posts <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+{% endblock content %}

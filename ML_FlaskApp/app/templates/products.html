@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    <div class="w3-quarter">
+      <img src='{{ ecommerce_image[0][0] }}' alt="macbookair" style="width:400px; height: 250px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[0][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[0][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[0] }}%</h4>
+    </div>
+    <div class="w3-quarter">
+      <img src="{{ ecommerce_image[1][0] }}" alt="macbookpro" style="width:400px; height: 250px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[1][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[1][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[1] }}%</h4>
+    </div>
+    <div class="w3-quarter">
+     <img src="{{ ecommerce_image[2][0] }}" alt="dell" style="width:400px; height: 250px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[2][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[2][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[2] }}%</h4>
+      
+    </div>
+    <div class="w3-quarter">
+      <img src="{{ ecommerce_image[3][0] }}" alt="hp" style="width:400px; height: 250px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[3][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[3][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[3] }}%</h4>
+    </div>
+  </div>
+  
+<!-- Second row grid  -->
+
+  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    <div class="w3-quarter">
+      <img src='{{ ecommerce_image[4][0] }}' alt="macbookair" style="width:250px; height: 299px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[4][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[4][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[4] }}%</h4>
+    </div>
+    <div class="w3-quarter"><br><br>
+      <img src="{{ ecommerce_image[5][0] }}" alt="macbookpro" style="width:200px; height: 255px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[5][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[5][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[5] }}%</h4>
+    </div>
+    <div class="w3-quarter"><br><br>
+     <img src="{{ ecommerce_image[7][0] }}" alt="dell" style="width:200px; height: 255px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[7][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[7][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[7] }}%</h4>
+      
+    </div>
+    <div class="w3-quarter"><br>
+      <img src="{{ ecommerce_image[8][0] }}" alt="hp" style="width:200px; height: 277px">
+      <h3><a href="{{ url_for('product', title=ecommerce_title[8][0]) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">{{ ecommerce_title[8][0] }}</a></h3>
+      <h4><i class="glyphicon glyphicon-heart" style="color: red; font-size: 20px" aria-hidden="true"></i>&nbsp;{{ sentiment_products[8] }}%</h4>
+    </div>
+  </div>
+  
+  {% endblock %}
+

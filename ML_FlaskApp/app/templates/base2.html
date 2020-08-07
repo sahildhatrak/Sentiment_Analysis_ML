@@ -1,0 +1,83 @@
+{% extends 'bootstrap/base.html' %}
+{% block doc %}
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<title>ML API</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/w3style.css') }}">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
+  	<style>
+	.w3-bar-block {padding:20px}
+	.w3-bar-item {padding:20px}
+	</style>
+</head>
+
+<body>
+	<!-- Sidebar with image -->
+
+
+<!-- Hidden Sidebar (reveals when clicked on menu icon)-->
+<nav class="w3-sidebar w3-animate-left w3-xxlarge" style="display:none;padding-top:150px;left:0;z-index:2" id="mySidebar">
+  <a href="javascript:void(0)" onclick="closeNav()" class="w3-button w3-xxlarge w3-display-topleft" >
+    <i class="glyphicon glyphicon-remove"></i>
+  </a>
+  <div class="w3-bar-block w3-center">
+    <a href="{{ url_for('products') }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+    {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
+        {% else %}
+        <a href="{{ url_for('user', username=current_user.username) }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">Profile</a>
+        <a href="{{ url_for('logout') }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">Logout</a>
+        {% endif %}
+    <a href="{{ url_for('explore') }}" style='color:white' onclick="w3_close()" class="w3-bar-item w3-button">Explore</a>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="w3-main w3-padding-large" style="margin-left:40%">
+
+  <!-- Menu icon to open sidebar -->
+  <span class="w3-button w3-display-topleft w3-xxlarge w3-hover-text-black" style="width:auto;left:0;" onclick="openNav()"><i class="glyphicon glyphicon-menu-hamburger"></i></span>
+	
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+	</div>
+	<div class='logo'>
+	<img src="/static/style/img/reviewit3.png" >
+    
+    </div>
+    <br><br><br><br><br><br><br>
+    {% block content %}{% endblock content %}
+	
+</body>
+<script>
+// Script to open and close sidebar
+function openNav() {
+  document.getElementById("mySidebar").style.width = "20%";
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+</html>
+
+{% endblock doc %}

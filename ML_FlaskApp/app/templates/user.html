@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<br><br>
+	    <table>
+	        <tr>
+	            <td>&nbsp;<img src="{{ user.avatar(156) }}"></td>
+	            <td><h3>&nbsp;&nbsp;User: {{ user.username }}</h3>
+	            <h3>&nbsp;&nbsp;Email: {{user.email}}</h3>
+	            {% if user.about_me %}<p>&nbsp;&nbsp;{{ user.about_me }}</p>{% endif %}
+                {% if user.last_seen %}<p>&nbsp;&nbsp;Last seen on: {{ user.last_seen }}</p>{% endif %}
+                {% if user == current_user %}
+                <p>&nbsp;&nbsp;<a href="{{ url_for('edit_profile') }}" style='color:white'>Edit your profile</a></p>
+                {% elif not current_user.is_following(user) %}
+        <p>&nbsp;
+            <form action="{{ url_for('follow', username=user.username) }}" method="post" style='color:white'>
+                {{ form.hidden_tag() }}
+                {{ form.submit(value='Follow') }}
+            </form>
+        </p>
+        {% else %}
+        <p>&nbsp;
+            <form action="{{ url_for('unfollow', username=user.username) }}" method="post" style='color:white'>
+                {{ form.hidden_tag() }}
+                {{ form.submit(value='Unfollow') }}
+            </form>
+        </p>
+        {% endif %}
+            	</td>
+	        </tr>
+	    </table>
+	    <hr>
+	    <div class="user_review">
+	    <h2>Reviews</h2>
+	    {% for post in posts %}
+	    	{% include '_post2.html' %}
+	    {% endfor %}
+	    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Newer posts
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older posts <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+	
+{% endblock %}

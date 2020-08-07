@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h2 align="center">Hi, {{ current_user.username }}!</h1><br>
+
+    <div class="login2">
+        <br><br><br>
+	<form name='form1'action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="review" placeholder="Enter review" required="required"/>
+        
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <br>
+        <br>
+        
+        {{review_text}}
+        <br>
+        {{prediction_text}}
+        <br>
+        <font size="32">
+        	{{prediction_score}}
+        </font>
+
+    </form>
+    <br><br><br>
+    <h2>Reviews</h2>
+    {% for post in posts%}
+    <div><p>{{post.author.username}} says: <b>{{post.body}}</b></p></div>
+    {% endfor %}
+</div>
+{% endblock %}
